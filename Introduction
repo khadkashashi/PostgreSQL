@@ -1,0 +1,65 @@
+1. What is a Database?
+A database is an organized collection of data that allows us to store, manage, and retrieve information easily.
+
+For example, a student database might contain:
+Students
+--------------------------------
+ID    Name       Faculty
+1     Ram        Science
+2     Sita       Management
+3     Hari       Computer
+
+2. What is DBMS(Database Management System)?
+A DBMS is software that allows us to create, store update, delete, and manage databases.
+Examples: MySQL, PostgreSQL,Microsoft SQL Server, Oracle Database, SQLite
+
+3. What is RDBMS (Relational Database Management System)?
+An RDBMS is a type of DBMS that stores data mainly in tables and allows tables to be related to each other.
+For example:
+Students |  Courses
+---------|  ---------------
+id	name |  id   course_name
+-------- |  ----------------
+1	Ram  |   1   Django
+2	Sita |   2   PostgreSQL
+
+The tables can be connected using keys.
+Examples of RDBMS: PostgreSQL, MySQL, Oracle Database, Microsoft SQL Server, MariaDB
+
+Important: PostgreSQL is an RDBMS.
+
+4. Other Available Databases
+Databases can be categorized in different ways.
+i. Relational databases--->Store data in tables.
+PostgreSQL
+MySQL
+Oracle
+SQL Server
+MariaDB
+SQLite
+
+ii.NoSQL databases-->Often store data in formats other than traditional relational tables.
+MongoDB     → Document database
+Redis       → Key-value database
+Cassandra   → Wide-column database
+Neo4j       → Graph database 
+
+
+5. SQL vs PostgreSQL
+This is very important.
+SQL= Structured Query Language
+SQL is a language used to communicate with relational databases.
+Example:SELECT * FROM students;
+SQL itself is not a database.
+
+PostgreSQL: PostgreSQL is a database management system that understands SQL. An open-source RDBMS that uses SQL
+SQL
+ ↓
+Language used to communicate
+ ↓
+PostgreSQL
+ ↓
+Database Management System
+ ↓
+Database
+So: SQL is a language, PostgreSQL is a database system.
