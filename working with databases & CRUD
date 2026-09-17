@@ -1,0 +1,225 @@
+# list down existing databases
+SELECT datname FROM pg_database;
+shortcut cmd= \l
+
+# create database
+CREATE DATABASE <db_name>;
+
+# change a database
+\c <db_name>;
+
+#deleting a database
+ DROP DATABASE <db_name>;
+
+
+1. Working with Databases
+A PostgreSQL server can contain multiple databases.
+Basic database operations:
+i. CREATE → Create a database
+ii.CONNECT → Connect to a database
+iii. LIST → See available databases
+iv. DROP → Delete a database
+
+2. Create a Database
+Use CREATE DATABASE---> CREATE DATABASE school;
+This creates a database named school.
+Check if it was created
+\l
+
+3. List Databases
+In psql, use: \l
+or: \list
+Both commands show the databases available in your PostgreSQL server.
+
+4. Connect to a Database
+To connect to a database from psql: \c school
+or: \connect school
+
+You should see something similar to: You are now connected to database "school".
+Important
+CREATE DATABASE and \c are different:
+
+CREATE DATABASE school;
+        ↓
+Creates the database
+
+\c school
+        ↓
+Connects to the database
+
+5. Check Current Database To see which database you're currently connected to:
+SELECT current_database();
+
+6. Drop a Database: To permanently delete a database:
+DROP DATABASE school;
+ Be careful: Dropping a database deletes the database and its data.
+You cannot normally drop the database you are currently connected to. Connect to another database first:
+\c postgres
+Then: DROP DATABASE school;
+
+
+
+#Table ---> a table is a collection of related data held in a table format within a database.
+Create a new Table 
+CREATE TABLE person(
+        id INT,
+        name VARCHAR(100),
+        city VARCHAR(100)
+        );
+can see --> \d person;
+
+
+# insert data --> adding data into a table
+insert INTO person (id, name, city)
+VALUES(101, , 'Raju', 'palpa'), (),();
+
+INSERT INTO person VALUES (101, 'Rahul');
+
+#Reading data
+SELECT  * FROM person ;
+SELECT  name , city FROM person ;
+
+# updating data
+UPDATE person SET city ='london'
+where id = 3;
+
+
+#deleting data
+ DELETE data from a Table
+ delete FROM person
+ where name= 'shashi'
+
+
+#CRUD---> means the four basic operations we perform on data:
+C → Create
+R → Read
+U → Update
+D → Delete
+
+In PostgreSQL, we commonly use:
+CRUD	SQL
+Create	INSERT
+Read	SELECT
+Update	UPDATE
+Delete	DELETE
+
+CREATE TABLE is technically DDL, not CRUD. CRUD refers to working with the actual data inside tables.
+
+1. Create a New Table---> First, let's create a students table.
+CREATE TABLE students (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    age INTEGER,
+    faculty VARCHAR(100)
+);
+Explanation
+id--->Unique ID for each student.
+SERIAL-->Automatically generates numbers such as 1, 2, 3...
+PRIMARY KEY---> Uniquely identifies each row.
+VARCHAR(100)-->Stores text up to 100 characters.
+INTEGER--->Stores whole numbers.
+
+2. See Tables
+In psql: \dt
+This lists the tables in the current database.
+To see the structure of a table:\d students
+
+i.CREATE (Insert Data)--->To add data to a table, use INSERT INTO.
+INSERT INTO students (name, age, faculty)
+VALUES ('Ram', 20, 'Science');
+
+Add multiple students:
+INSERT INTO students (name, age, faculty)
+VALUES
+    ('Sita', 21, 'Management'),
+    ('Hari', 19, 'Computer'),
+    ('Gita', 20, 'Science');
+
+Because id is SERIAL, PostgreSQL automatically generates the IDs.
+
+ii.READ - Read Data--->To read all data:
+SELECT * FROM students;
+* means all columns.
+
+Select Specific Columns:
+SELECT name, faculty FROM students;
+
+Read Specific Data Using WHERE
+SELECT *
+FROM students
+WHERE faculty = 'Science';
+This returns only students from Science.
+
+You can also search by ID:
+SELECT *
+FROM students
+WHERE id = 2;
+
+
+iii.UPDATE - Update Data--->Use UPDATE to modify existing data.
+For example, change Ram's age:
+UPDATE students
+SET age = 21
+WHERE id = 1;
+
+Change faculty:
+UPDATE students
+SET faculty = 'Computer'
+WHERE id = 1;
+ Important--->Always be careful with WHERE.
+
+This:
+UPDATE students
+SET age = 21; (will update every student).
+
+iv. DELETE - Delete Data--->Use DELETE to remove data.
+
+Delete student with ID 4:
+DELETE FROM students
+WHERE id = 4;
+Important--> Without WHERE:
+DELETE FROM students;(all rows will be deleted from the table.)
+The table itself will still exist.
+
+v. DELETE Data vs DROP Table
+These are different:
+Delete all rows---> DELETE FROM students;
+The table remains.
+students table
+     ↓
+empty table
+Delete the entire table
+
+DROP TABLE students;---> The table itself is removed.
+students table
+     ↓
+gone completely
+
+
+Complete CRUD Example
+-- Create table
+CREATE TABLE students (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    age INTEGER,
+    faculty VARCHAR(100)
+);
+
+-- CREATE
+INSERT INTO students (name, age, faculty)
+VALUES ('Ram', 20, 'Science');
+
+-- READ
+SELECT * FROM students;
+
+-- UPDATE
+UPDATE students
+SET age = 21
+WHERE id = 1;
+
+-- READ again
+SELECT * FROM students;
+
+-- DELETE
+DELETE FROM students
+WHERE id = 1;
