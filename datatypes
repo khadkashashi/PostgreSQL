@@ -1,0 +1,86 @@
+A. DataTypes : An attribute that specifies the type of data in a column of our database- table.bA data type tells PostgreSQL what kind of data a column can store.
+ # most widely used are:
+ . Numeric - int, double, float, decimal
+ . string - varchar
+ . date -date
+ . boolean -boolean
+
+ 1. Integer (Whole Numbers): Used to store numbers without decimal points.
+Example:18,25, 100
+Other integer types:
+Type	     Range
+------------------------
+SMALLINT	Small numbers
+INTEGER	    Normal numbers
+BIGINT	    Very large numbers
+
+2. VARCHAR(n): stores text with a maximum length.
+ex: name VARCHAR(100)
+Example:Ram, Sita, Hari
+VARCHAR(100) means maximum 100 characters.
+
+3. TEXT: Stores long text.
+ex: description TEXT
+Example: This is a very long description...
+
+4. BOOLEAN: Stores true or false values.
+ex: is_active BOOLEAN
+Values:TRUE, FALSE
+
+5. DATE: Stores dates.
+ex: dob DATE
+Example:2026-09-17
+Format:YYYY-MM-DD
+
+6. TIMESTAMP: Stores date and time.
+ ex: created_at TIMESTAMP
+Example: 2026-09-17 10:30:00
+
+7. DECIMAL / NUMERIC: Stores decimal numbers.
+ex: salary DECIMAL(10,2)
+Example: 25000.50, 1000.75. not 1111111111.11
+
+DECIMAL(10,2):
+Total digits = 10
+Digits after decimal = 2
+
+B: Constraint: a constrint in PostgreSQL is a rule applied to a column.They help keep data correct and valid.
+Example:
+Rules:
+- ID must be unique
+- Name cannot be empty
+- Email must be unique
+
+1. PRIMARY KEY : the primary key constrint uniquely identifies each record in a table.
+. primary keys must contain unique values, and cant contain null values.
+. a table can have only one primary key.
+Example:
+CREATE TABLE students (
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(100)
+);
+Duplicate IDs are not allowed.
+
+2. Not null  :Prevents empty values.
+ CREATE TABLE customers(
+    id INT NOT NULL,
+    name VARCHAR(100) NOT NULL
+ );
+
+3. DEFAULT: Sets a default value if no value is provided.
+ CREATE TABLE CUSTOMERS(
+    acc_no INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    acc_type VARCHAR(50) NOT NULL DEFAULT 'saving'
+ );
+
+ 4. SERIAL: SERIAL automatically generates numbers.
+ CREATE TABLE students (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+
+# to set next currect value according to your preference
+SELECT setval('employees_emp_id_seq', 1);
+SELECT setval('tablename_primarykey_seq, settingid);
