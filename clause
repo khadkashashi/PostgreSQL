@@ -1,0 +1,42 @@
+1. What is a Clause?: A clause is a part of an SQL statement that performs a specific job.
+For example:SELECT *FROM students WHERE age > 18;
+Here:SELECT → chooses what data to retrieve
+FROM → tells PostgreSQL which table to use
+WHERE → filters the data
+
+#Common SQL Clauses: The most important clauses you'll use with PostgreSQL are:
+1. WHERE: Used to filter rows.
+SELECT *FROM students WHERE age > 18;
+Only students older than 18 are returned.
+Another example:SELECT *FROM students WHERE faculty = 'Science';
+select * from students where faulty ='Science' or faulty ='math';
+select * from stdents where faulty IN ('math','finance','science');
+select * from stdents where faulty NOT IN ('math','finance','science');
+select * from employees where salary BETWEEN 40000 AND 65000;
+ 
+2. DISTINCT : to find selective column
+select DISTINT dept from employees;
+
+3.ORDER_BY:Used to sort the result.
+SELECT * FROM employees ORDER BY fname;
+SELECT * FROM employees ORDER BY salary ASC;
+SELECT * FROM employees ORDER BY fname DESC;
+
+4. limit :Used to limit the number of rows returned.
+SELECT * FROM employees LIMIT 5;
+
+5. LIKE: to find the selective row by single character
+SELECT * FROM employees where fname like 'a%;( a bata start vayeko name )
+SELECT * FROM employees where fname like '%a'; (last ma a vayeko name)
+SELECT * FROM employees where fname like '%%a';(bitch ma present hune)
+SELECT * FROM employees where dept like '--'; (show only 2 letter)
+SELECT * FROM employees where fname like '-a%'; ( second letter a)
+
+6. OFFSET: Used to skip a specific number of rows.
+SELECT *FROM students OFFSET 5;
+Skips the first 5 rows.
+
+
+6. HAVING: Used to filter groups created by GROUP BY.
+Example: SELECT faculty, COUNT(*) FROM students GROUP BY faculty HAVING COUNT(*) > 10;
+This returns only faculties having more than 10 students.
