@@ -46,3 +46,11 @@ Management | 3
 
 Average marks by subject
 SELECT subject, AVG(marks) FROM results GROUP BY subject;
+
+
+example:
+SELECT faculty, COUNT(*)
+FROM students
+WHERE age >= 18
+GROUP BY faculty
+HAVING COUNT(*) > 5;

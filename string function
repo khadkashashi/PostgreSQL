@@ -1,0 +1,82 @@
+PostgreSQL - String Functions
+1. What are String Functions?-->String functions are functions used to work with text/string data.
+For example, we can use them to:
+Change uppercase/lowercase
+Combine text
+Find the length of text
+Remove extra spaces
+Extract part of a string
+Replace text
+
+
+#Common String Functions
+I. CONCAT()-->Combines multiple strings.
+SELECT CONCAT('Hello', ' ', 'World');
+Hello World
+select concat(fname, lanme) from employees;
+select emp_id, concat(fname,'', lname) as fullnsme, dept from employees;
+emp_id | fullname     | dept
+     1 | shashikhadka | IT 
+select emp_id, concat('', fname, lname, salary) as fullname, dept from employess;
+emp_id |     fullname       | dept
+    1  | raj sharma 500000  | IT 
+
+
+II. SUBSTRING()--->Extracts a part of a string.
+SELECT SUBSTRING('PostgreSQL'  1,4);
+result: Post
+
+III. REPLACE()-->Replaces part of a string with another value.
+syn:REPLACE(string, old_text, new_text)
+SELECT REPLACE('I like python, like, love):
+result:i love python
+
+select replace (dept,'IT','TECH') from employees;
+
+
+IV. REVERSE()--> reserse the word
+select reverse (fname) from employess;
+result:ihsahs
+
+v. LENGTH()--> 
+select LENGTH('hello');
+result: 5
+select length(fname) from employees;
+
+exercise:
+select * from employees where length(fname)>5;
+
+vi. upper ()--> Converts text to uppercase.
+SELECT UPPER('postgresql');
+
+vii. LOWER()-->Converts text to lowercase.
+SELECT LOWER('POSTGRESQL');
+
+viii. TRIM()-->Removes spaces from the beginning and end of a string.
+SELECT TRIM('   Hello   ');
+RESULT: Hello
+
+x.position : select position ('om' in 'Thomas');
+result :3
+
+
+question; 1:Raj:Sharma:IT
+select concat_ws(':', fname,lname,dept) from employees where emp_id=1;
+
+question: 1:Raj Sharma:IT:50000
+select concat_ws(':',emp_id,concat_ws(fname, lname),dept, salary ) from employees where emp_id=1;
+
+question : 4:suman:finance
+select conct_ws(':', emp_id, fname,UPPER(dept) ) from employees where emp_id=4;
+
+question: I1 Raju 
+          H2 Priya   
+select concat(left(dept,1),emp_id), fname from employees;
+
+quesion:find the totaal salary paying in department?
+select SUM(salary) from employees where dept ='HR'
+
+question: find the higest salary
+select * from employees order by salary desc limit 1;
+or
+select * from employees where salary=(select max(salary)from emplotees);
