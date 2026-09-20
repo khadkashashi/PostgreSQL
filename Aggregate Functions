@@ -1,0 +1,48 @@
+PostgreSQL - Aggregate Functions
+1. What is an Aggregate Function?: An aggregate function performs a calculation on multiple rows and returns one result.
+For example, if we have 5 students, we can calculate:
+How many students?
+What is the average age?
+What is the highest age?
+What is the total of some numbers?
+Example:SELECT COUNT(*) FROM students;
+
+#commom function are:
+i. COUNT()-->Counts the number of rows.
+SELECT COUNT(*) FROM students;
+SELECT COUNT(*) FROM students;
+SELECT COUNT(DISTINCT faculty) FROM students; --> Counts different faculties. distinct mens cant calculate duplicate or remove duplicate
+
+ii. SUM()-->Calculates the total of a numeric column.
+select sum(salary) from employess;
+
+iii. avg()---> Calculates the average.
+select avg(salary) from employess;
+
+iv. max()-->Returns the highest value.
+SELECT MAX(marks) FROM results;
+
+v.min()--> returns the lowest value.
+SELECT MAX(marks) FROM results;
+
+
+2. what is GROUP BY?
+Aggregate functions become especially useful with GROUP BY. Suppose our students table contains:
+name   | faculty
+-------+-----------
+Ram    | Science
+Sita   | Science
+Hari   | Management
+Gita   | Management
+John   | Management
+
+To count students in each faculty:
+SELECT faculty, COUNT(*) FROM students GROUP BY faculty;
+Result:
+faculty    | count
+-----------+------
+Science    | 2
+Management | 3
+
+Average marks by subject
+SELECT subject, AVG(marks) FROM results GROUP BY subject;
