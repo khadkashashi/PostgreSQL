@@ -1,0 +1,69 @@
+PostgreSQL - Altering Tables
+1. What is ALTER TABLE?---> ALTER TABLE is used to change the structure of an existing table.
+You can use it to:
+Add a column
+Remove a column
+Rename a column
+Change a column's data type
+Rename a table
+Add or remove constraints
+
+i.Add a New Column
+Syntax:ALTER TABLE table_name 
+ADD COLUMN column_name data_type;
+Example:
+ALTER TABLE students
+ADD COLUMN email VARCHAR(100);
+Also add DEFAULT VALUE 
+ADD COLUMN email VARCHAR(100) default 'shashi';
+
+Now the table has:
+id
+name
+age
+faculty
+email
+
+
+ii. to remove: ALTER TABLE students
+DROP COLUMN age;
+
+iii.Rename a Column
+Syntax:ALTER TABLE table_name
+RENAME COLUMN old_name TO new_name;
+Example:ALTER TABLE students
+RENAME COLUMN name TO full_name;
+
+iv. Add a Column with a Default Value
+ALTER TABLE students
+ADD COLUMN status VARCHAR(20) DEFAULT 'Active';
+Existing rows will get the default value in PostgreSQL.
+
+v. Change Column Data Type: Use ALTER COLUMN ... TYPE.
+Example:
+ALTER TABLE students
+ALTER COLUMN age TYPE BIGINT;
+Now the age column uses BIGINT.
+
+Another example
+Change name from VARCHAR(100) to TEXT:
+ALTER TABLE students
+ALTER COLUMN name TYPE TEXT;
+PostgreSQL must be able to convert the existing data to the new type.
+
+vi. Add a Constraint
+For example, add a UNIQUE constraint:
+ALTER TABLE students
+ADD CONSTRAINT unique_email UNIQUE (email);
+Now duplicate email addresses are not allowed.
+
+vii. Add a NOT NULL Constraint
+ALTER TABLE students
+ALTER COLUMN name SET NOT NULL;
+Now name cannot contain NULL.
+
+viii. Remove a NOT NULL Constraint
+ALTER TABLE students
+ALTER COLUMN name DROP NOT NULL;
+Now name can contain NULL again.
+
